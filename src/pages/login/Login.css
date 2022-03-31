@@ -4,11 +4,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    opacity: 1;
     background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.438),
         rgba(255, 255, 255, 0.5)
       ),
-      url("https://images.pexels.com/photos/768473/pexels-photo-768473.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+      url("https://www.solidbackgrounds.com/images/3840x2160/3840x2160-light-sky-blue-solid-color-background.jpg");
     background-size: cover;
   }
   

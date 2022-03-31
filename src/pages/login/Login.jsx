@@ -17,33 +17,18 @@ const Login = () => {
 
   const handleLogin = (e) => {
     
-    e.PreventDefault();
-    // try {
-    //   firebase.auth().signInWithEmailAndPassword(email, password)
-      
-    //   .then(() => {
-    //     alert('Logged In')
-    //     history('/');
-    //   })
-    //   .catch((error) => {
-    //     alert(error.message);
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    console.log(email, password);
+    e.preventDefault(); 
     firebase.auth().signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    console.log(userCredential)
-    var user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });
-  };
+      .then(() => {
+        alert('Logged In')
+        history('/');
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+    }
+    
+  
   return (
     <div className="login">
       <span className="loginTitle">Login</span>
