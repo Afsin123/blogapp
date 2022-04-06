@@ -1,8 +1,18 @@
-import { Link } from "react-router-dom";
+import React,{useContext} from "react";
+import fire from "../../firebase/config";
+//import { AuthContext } from "../../store/Context";
+import { Link, useNavigate } from "react-router-dom";
+//import { FirebaseContext } from "../../store/Context";
+import { useSelector } from "react-redux";
 import "./topbar.css";
 
 export default function Topbar() {
-  const user = false;
+  const user = useSelector((state) => state.auth.user);
+  //const user = false;
+
+  // const {user} = useContext(AuthContext);
+  // const {firebase} = useContext(FirebaseContext);
+  const history = useNavigate();
   return (
     <div className="top">
       <div className="topLeft">
@@ -17,19 +27,40 @@ export default function Topbar() {
             <Link className="link" to="/">
               HOME
             </Link>
-          </li>
+          </li> 
           <li className="topListItem">ABOUT</li>
           <li className="topListItem">CONTACT</li>
-          <li className="topListItem">
+          {user && <li className= "topListItem" onClick = {()=> {
+            history("/write")
+          }}> ADD POST </li> }
+          {/* <li className="topListItem">
             <Link className="link" to="/write">
               WRITE
             </Link>
-          </li>
-          {user && <li className="topListItem">LOGOUT</li>}
+          </li> */}
+          {user && <li className="topListItem" onClick={()=> {
+            fire.auth.signOut();
+            history("/Login")
+          }}>LOGOUT</li>}
+          
         </ul>
       </div>
       <div className="topRight">
-        {user ? (
+      <span> {user ? `Welcome ${user.displayName}`: (  <ul> <li className="topListItem">
+              <Link className="link" to="/login">
+                LOGIN 
+              </Link>   
+              </li> 
+              <li> <Link className="link" to="/register">
+                REGISTER
+              </Link>
+              </li> 
+              </ul> 
+           )}</span>
+      
+           
+           
+        {/* {user ? (
           <Link className="link" to="/settings">
             <img
               className="topImg"
@@ -41,7 +72,7 @@ export default function Topbar() {
           <ul className="topList">
             <li className="topListItem">
               <Link className="link" to="/login">
-                LOGIN
+                LOGIN 
               </Link>
             </li>
             <li className="topListItem">
@@ -50,7 +81,7 @@ export default function Topbar() {
               </Link>
             </li>
           </ul>
-        )}
+        )} */}
         <i className="topSearchIcon fas fa-search"></i>
       </div>
     </div>

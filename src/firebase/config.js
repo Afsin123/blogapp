@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
-import firebase from 'firebase';
-import 'firebase/auth';
-import 'firebase/storage';
-
+import firebase from "firebase/app";
+import "firebase/database";
+import "firebase/auth";
+import "firebase/storage";
+import "firebase/firestore";
 
 //import { initializeApp } from "firebase/app";
 
@@ -16,4 +17,18 @@ const firebaseConfig = {
   };
 
   // Initialize Firebase
- export default firebase.initializeApp(firebaseConfig);
+ 
+//  export const signUpEmailPwd=(email,password)=>{
+//   return createUserWithEmailAndPassword(auth,email, password);
+//  }
+//  export const  signInEmailPwd= (email,password)=>{
+//   return signInWithEmailAndPassword(auth, email, password);
+//  }
+ 
+//  export const signOutApp=()=>{
+//    return signOut(auth);
+//  }
+  const fire = firebase.initializeApp(firebaseConfig); 
+  export default fire; 
+  //export default firebase.initializeApp(firebaseConfig); 
+  

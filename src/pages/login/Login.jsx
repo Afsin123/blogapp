@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import { FirebaseContext } from "../../store/FirebaseContext";
+import { FirebaseContext } from "../../store/Context";
+import { signUpEmailPwd, signInEmailPwd } from "../../firebase/config";
 
 import "./Login.css";
 //import { Formik, Form , Field} from "formik";
@@ -12,6 +13,7 @@ import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   const { firebase } = useContext(FirebaseContext);
   const history = useNavigate();
 

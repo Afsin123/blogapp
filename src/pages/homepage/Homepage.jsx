@@ -3,7 +3,7 @@ import Header from '../../components/header/Header';
 
 const Homepage = () => {
   return (
-    <div> Homepage
+    <div> 
         <Header/> 
         
     </div>
