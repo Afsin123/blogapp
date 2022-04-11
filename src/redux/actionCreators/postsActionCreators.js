@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import fire from "../../firebase/config";
 
+
 const setPostsLoading = (message) => ({
     type: "SET_POSTS_LOADING",
     payload: message,
@@ -23,8 +24,8 @@ const setPostsLoading = (message) => ({
       }
     });
   
-    dispatch(setPostsLoading(false));
-    dispatch(setPosts(allPosts));
+    dispatch (setPostsLoading(false));
+    dispatch (setPosts(allPosts));
   };
   
   const addPost = (post) => ({
@@ -45,8 +46,8 @@ const setPostsLoading = (message) => ({
           updatedAt: Date.now(),
           image: null,
           author,
-          likes: 0,
-          comments: [],
+          //likes: 0,
+          //comments: [],
           postedBy: nameAuthor,
         })
         .then((doc) => {

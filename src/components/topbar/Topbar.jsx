@@ -3,7 +3,8 @@ import fire from "../../firebase/config";
 //import { AuthContext } from "../../store/Context";
 import { Link, useNavigate } from "react-router-dom";
 //import { FirebaseContext } from "../../store/Context";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
+import { toast } from "react-toastify";
 import "./topbar.css";
 
 export default function Topbar() {
@@ -13,6 +14,18 @@ export default function Topbar() {
   // const {user} = useContext(AuthContext);
   // const {firebase} = useContext(FirebaseContext);
   const history = useNavigate();
+  const dispatch = useDispatch();
+  const logoutUser = () => {
+    fire
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: "RESET_USER" });
+        toast.success("You are successfully logged out");
+        history("/login");
+      })
+      .catch((error) => toast.error(error.message));
+  };
   return (
     <div className="top">
       <div className="topLeft">
@@ -28,8 +41,11 @@ export default function Topbar() {
               HOME
             </Link>
           </li> 
-          <li className="topListItem">ABOUT</li>
-          <li className="topListItem">CONTACT</li>
+          
+          {user && <li className= "topListItem" onClick = {()=> {
+            history("/dashboard")
+          }}> DASHBOARD </li> }
+          {/* <li className="topListItem">CONTACT</li> */}
           {user && <li className= "topListItem" onClick = {()=> {
             history("/write")
           }}> ADD POST </li> }
@@ -39,8 +55,8 @@ export default function Topbar() {
             </Link>
           </li> */}
           {user && <li className="topListItem" onClick={()=> {
-            fire.auth.signOut();
-            history("/Login")
+            logoutUser();
+           // history("/Login") 
           }}>LOGOUT</li>}
           
         </ul>

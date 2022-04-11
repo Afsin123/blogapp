@@ -44,7 +44,8 @@ const AddPost = () => {
         };
     
         dispatch(newPost(data, userId, user.displayName, setProgress));
-      };
+      }; 
+
   return (
     <div className="container">
     <div className="row">

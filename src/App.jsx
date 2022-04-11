@@ -2,7 +2,7 @@ import React, {useEffect, useContext} from 'react';
 import Register from './pages/register/Register';
 
 // import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useRoutes } from 'react-router-dom';
 import Login from './pages/login/Login';
 import Topbar from './components/topbar/Topbar';
 import Homepage from './pages/homepage/Homepage';
@@ -14,11 +14,16 @@ import fire from './firebase/config';
 // import { FirebaseContext } from './store/Context';
 import './App.css';
 import AddPost from './dashboard/AddPost';
+import SeePost from './dashboard/SeePost';
+import Posts from './dashboard/Posts';
+import Dashboard from './dashboard/Dashboard';
+
 
 
 function App() {
 
   const dispatch = useDispatch();
+  //const path = useRoutes();
 
   useEffect(() => {
     fire.auth().onAuthStateChanged((user)=> {
@@ -52,10 +57,14 @@ function App() {
          <Topbar />
          <Routes> 
          <Route exact path = '/' element = {<Homepage /> } /> 
+         <Route path = '/dashboard'  element = { <Dashboard /> } /> 
          
          <Route path = '/Login'  element = { <Login/>} /> 
          <Route path = '/Register' element = { <Register />} /> 
          <Route path = '/Write'  element = { <AddPost />} /> 
+         <Route path = '/posts'  element = { <Posts  /> } />  
+         <Route path = '/post/:id'  element = { <SeePost /> } /> 
+         <Route path = ":id" element = { <SeePost /> } /> 
          </Routes> 
         </Router> 
       

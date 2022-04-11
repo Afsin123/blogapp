@@ -36,7 +36,7 @@ const Register = () => {
         if (!isLoggedIn) dispatch({ type: "SET_USER", payload: user });
         if (window.location.pathname === "/")
           history("/");
-        history.push(window.location.pathname);
+        history(window.location.pathname);
       } else {
         history("/register");
       }
