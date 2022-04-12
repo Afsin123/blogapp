@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch , shallowEqual} from 'react-redux';
-import { getPosts } from '../redux/actionCreators/postsActionCreators';
+import { getPosts, postDel } from '../redux/actionCreators/postsActionCreators';
+import { toast } from 'react-toastify';
+import moment from 'moment';
 
-
-const SeePost = () => {
-    const id = useParams();
+const SeePost = ({post}) => {
+    const {id} = useParams();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    const history = useNavigate();
     
-
     const { posts, postsLoading, isLoggedIn, user, userId } = useSelector(
         (state) => ({
           posts: state.posts.posts,
@@ -20,9 +21,16 @@ const SeePost = () => {
         }),
         shallowEqual
       );
-
+     
       const dispatch = useDispatch();
+      
       const currentPost = posts.find((post) => post.postId === id && post); 
+
+      // const postDelete = () => {
+      //   dispatch (postDel(post.postId));
+      //   toast.success("Post deleted successfully");
+      //  };
+ 
 
       useEffect(()=>{
           if(postsLoading){
@@ -62,14 +70,32 @@ const SeePost = () => {
               {currentPost.post.description}
             </p>
             </div>
+           
+            <button
+                  type="button"
+                  className="btn btn-danger w-40"
+                  onClick={() => history("/dashboard")}
+                >
+                  Go Back
+         </button>
+         {/* <button
+            type="button"
+            onClick={postDelete}
+            className="btn btn-danger my-2ss"
+          >
+            <i className="fa fa-trash-o"></i> Delete Post
+          </button> */}
           </div>
         </div>
+        
       ) : (
         <h1 className="text-center">
           Post with id <span className="text-primary">{id}</span> does not
           exists
         </h1>
       )}{" "}
+
+        
     </div>
  
   );

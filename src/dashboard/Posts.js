@@ -27,7 +27,7 @@ const Posts = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12 my-5 text-right">
-          <Link to="/admin/dashboard" className="btn btn-dark mr-5">
+          <Link to="/" className="btn btn-dark mr-5">
             Go Back
           </Link>
         </div>

@@ -17,6 +17,7 @@ import AddPost from './dashboard/AddPost';
 import SeePost from './dashboard/SeePost';
 import Posts from './dashboard/Posts';
 import Dashboard from './dashboard/Dashboard';
+import EditPost from './dashboard/EditPost';
 
 
 
@@ -62,6 +63,7 @@ function App() {
          <Route path = '/Login'  element = { <Login/>} /> 
          <Route path = '/Register' element = { <Register />} /> 
          <Route path = '/Write'  element = { <AddPost />} /> 
+         <Route path = '/homepage/post/:id/edit'  element = { <EditPost /> } /> 
          <Route path = '/posts'  element = { <Posts  /> } />  
          <Route path = '/post/:id'  element = { <SeePost /> } /> 
          <Route path = ":id" element = { <SeePost /> } /> 

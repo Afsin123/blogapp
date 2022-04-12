@@ -3,14 +3,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { postDel } from '../redux/actionCreators/postsActionCreators';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 const PostCard = ({post, id}) => {
   
     const history = useNavigate();
     const dispatch = useDispatch();
     const postDelete = () => {
-        dispatch(postDel(post.postId));
-        toast.success("Post deleted successfully!");
+       dispatch (postDel(post.postId));
+       toast.success("Post deleted successfully");
       };
 
   return (
@@ -32,6 +33,9 @@ const PostCard = ({post, id}) => {
           <i className="fa fa-thumbs-up"></i> Likes {post.post.likes}
         </p> */}
         <p className="bg-dark text-white py-1 px-2">{post.post.postedBy}</p>
+      </div>
+      <div> 
+      <p className="text-white mb-4 text-shadow font-semibold text-xs">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
       </div>
       <div className="">
         <button
