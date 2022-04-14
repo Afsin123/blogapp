@@ -6,7 +6,7 @@ const Header = () => {
     <div className="header">
     <div className="headerTitles">
       <span className="headerTitleSm">Welcome To</span>
-      <span className="headerTitleLg"> BLOG </span>
+      <span className="headerTitleLg"> My Blog App </span>
     </div>
     <img
       className="headerImg"

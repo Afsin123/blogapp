@@ -11,6 +11,7 @@ const EditPost = () => {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
+    const [image, setImage] = useState('');
 
     const { posts, postsLoading } = useSelector(
         (state) => ({
@@ -31,6 +32,7 @@ const EditPost = () => {
           setTitle(currentPost.post.title);
           setCategory(currentPost.post.category);
           setDescription(currentPost.post.description);
+         // setImage(currentPost.post.image);
         }
       }, [dispatch, currentPost]);   
 
@@ -47,7 +49,12 @@ const EditPost = () => {
         if (title.trim().split(" ").length < 2) {
           return toast.info("Title should be of atleast 2 words");
         }
-    
+        // if (!image || image === undefined) {
+        //   return toast.warning("Please select an image!");
+        // }
+        // if (image.size > 5242880) {
+        //   return toast.info("Image should be less than or equal to 5 MB");
+        // }
         const data = { title, description, category };
         dispatch(postUpdate(currentPost.postId, data));
         toast.success("Post Updated Successfully!!");
@@ -89,6 +96,18 @@ const EditPost = () => {
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
               </div>
+              <div className="product-box col-md-6">
+              <p> Current Product Image</p>
+              <img src={image} alt="product-img" className="image-product" />
+            </div>
+              {/* <div className="form-group">
+              <input
+                type="file"
+                className="form-control"
+                onChange={(e) => setImage(e.target.files[0])}
+                accept="image/png, image/jpeg, image/jpg"
+              />
+            </div> */}
               <div className="input-group">
                 <input
                   type="submit"

@@ -14,7 +14,10 @@ const AddPost = () => {
     const [image, setImage] = useState('');
     const [category, setCategory] = useState('');
     const [progress, setProgress] = useState('');
+    
+    const handleCategoryChange = (e) => {
 
+    }
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -75,7 +78,7 @@ const AddPost = () => {
               <i className="fa fa-tick text-success mx-auto my-2"></i>
               <h1 className="text-center my-2">Post Uploaded successfully</h1>
               <Link
-                to={"/admin/dashboard/posts"}
+                to={"/dashboard/posts"}
                 className="my-2 mx-auto btn btn-primary"
               >
                 See Posts
@@ -93,7 +96,23 @@ const AddPost = () => {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <div className="form-group">
+            <div className='filter-container'> 
+            <div>Filter by Category:</div> 
+            <div>
+               <select
+                   name="category-list"
+        id="category-list"
+        onChange= {(e) => setCategory(e.target.value)}
+      >
+         <option value="">All</option>
+         <option value="Food">Food</option>
+         <option value="Travel">Travel</option>
+         <option value="Health">Health</option>
+         <option value="Art">Art</option>
+          </select> 
+   </div>
+   </div>
+            {/* <div className="form-group">
               <input
                 type="category"
                 placeholder="Categories [followed with commas for multiple]"
@@ -101,7 +120,8 @@ const AddPost = () => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               />
-            </div>
+            </div> */}
+
             <div className="form-group">
               <textarea
                 placeholder="Enter Description"
