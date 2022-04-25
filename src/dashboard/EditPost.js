@@ -32,7 +32,7 @@ const EditPost = () => {
           setTitle(currentPost.post.title);
           setCategory(currentPost.post.category);
           setDescription(currentPost.post.description);
-         // setImage(currentPost.post.image);
+          setImage(currentPost.post.image);
         }
       }, [dispatch, currentPost]);   
 
@@ -55,7 +55,7 @@ const EditPost = () => {
         // if (image.size > 5242880) {
         //   return toast.info("Image should be less than or equal to 5 MB");
         // }
-        const data = { title, description, category };
+        const data = { title, description, category, image };
         dispatch(postUpdate(currentPost.postId, data));
         toast.success("Post Updated Successfully!!");
       };
@@ -108,6 +108,7 @@ const EditPost = () => {
                 accept="image/png, image/jpeg, image/jpg"
               />
             </div> */}
+           
               <div className="input-group">
                 <input
                   type="submit"

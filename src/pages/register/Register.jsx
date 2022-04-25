@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ValidateEmail } from "../../helpers/EmailValidator";
 import { passwordValidator } from "../../helpers/PasswordValidator";
 import TextInput from "../../components/textinput/TextInput";
-//import { MessageList } from "semantic-ui-react";
 import { toast } from "react-toastify";  
 import "./Register.css";
 
@@ -48,11 +47,7 @@ const Register = () => {
       return toast.warning("Please fill in all fields!!");
     }
 
-    // if (password !== confirmPassword) {
-    //   return toast.warning("Passwords donot match!");
-    // }
-
-    fire
+      fire
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
@@ -70,71 +65,6 @@ const Register = () => {
       });
   };
 
-  // const authenticate =()=> {
-  //   const emailError = ValidateEmail(email.value);
-	//    const passwordError = passwordValidator(password.value); 
-     // setLoader(true);
-
-    //  if(emailError){
-    //   setEmail({...email,error:emailError});	   
-    //   // setLoader(false);
-    // }
-    // else if(passwordError){
-    //   setPassword({...password,error:passwordError});	   
-    //   //setLoader(false);
-    // }
-    // else if(signUp === 'yes'){
-    //   signUpEmailPwd(email.value,password.value).then((userCredential) => {
-    //           setError("Success");
-    //           //setLoader(false);
-    //    })
-    //    .catch((error) => {
-    //      const errorCode = error.code;
-    //      //const result = FirebaseErrorHandler(errorCode);
-    //        setError(result);
-    //        //setLoader(false);
-
-    //    });
-    // }
-    // else{
-
-    //   // signInEmailPwd(email.value,password.value).then((userCredential) => {
-    //   //    const user = userCredential.user;
-    //   //   setError("Success.Please SignIn to Site");
-    //      //setLoader(false);
-
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     //const result = FirebaseErrorHandler(errorCode);
-    //      setError(result);
-    //       //setLoader(false);
-
-    //   });
-   
-
-  //} 
-  //const {firebase} = useContext(FirebaseContext)
-  // const handleSubmit = (e) => {
-  //   e.preventDefault(); 
-  //   let messages = [];
-  //   if(username.value  === '' || username.value == null ){
-  //     messages.push('Name is required')
-  //   }
-
-  //   fire.auth.createUserWithEmailAndPassword(email,password).then((result)=> {
-  //     result.user.updateProfile({displayName: username}).then(()=> {
-  //      fire.firestore().collection('users').add({
-  //        id:result.user.uid,
-  //        username: username
-  //      }).then(()=> {
-  //         history("/login");
-  //      })
-  //     })
-  //   })
-  
-   
-  // };
   return (
     <div className="container">
       <span className="registerTitle">Register</span>
@@ -144,14 +74,6 @@ const Register = () => {
 							  {error}
 							</div>
 						}
-        {/* <label htmlFor="username">Username</label> */}
-        {/* <input
-          className="formGroup"
-          type="text"
-          value={username.value}
-          onChange={(e) => setUsername({value:e.target.value,error:""})}
-          placeholder="Enter your username..."
-        /> */}
         <div className="form-group">
                 <input
                   type="text"
@@ -183,29 +105,9 @@ const Register = () => {
                 />
               </div>
 
-        {/* <label htmlFor="email">Email</label>
-        <TextInput
-          className="registerInput"
-          type="text"
-          value={email.value}
-          error={!!email.error}
-					  errorText={email.error}
-          onChange={(e) => setEmail({value:e.target.value,error:""})}
-          placeholder="Enter your email..."
-          variant="filled" 
-        />
-        <label htmlFor="password">Password</label>
-        <TextInput
-          className="registerInput"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password..."
-        /> */}
-
         <button className="form-group">Register</button>
       </form>
-      {/* <button className="registerLoginButton">Login</button> */}
+      
     </div>
   );
 };

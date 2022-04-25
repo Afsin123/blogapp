@@ -5,6 +5,7 @@ import { getPosts, postDel } from '../redux/actionCreators/postsActionCreators';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
+
 const SeePost = ({post}) => {
     const {id} = useParams();
     const [username, setUsername] = useState('');
@@ -25,6 +26,8 @@ const SeePost = ({post}) => {
       const dispatch = useDispatch();
       
       const currentPost = posts.find((post) => post.postId === id && post); 
+      
+    
 
       // const postDelete = () => {
       //   dispatch (postDel(post.postId));
@@ -54,10 +57,13 @@ const SeePost = ({post}) => {
         </div>
         <div className="col-md-12 p-5 mb-3">
           <div className="d-flex align-items-center justify-content-between">
+         
             <h1 className="display-3 text-capitalize">
               {currentPost.post.title}
             </h1>
+           
             <div className="d-flex col-md-4 align-items-center justify-content-end">
+            
               {currentPost.post.category.split(",").map((category, id) => (
                 <p key={id} className="bg-primary mx-2 px-2 py-1 text-white">
                   {category.trim()}
@@ -66,6 +72,7 @@ const SeePost = ({post}) => {
             </div>
           </div>
           <div className="d-flex">
+          <p className='blog-date'>Published {currentPost.post.createdAt}</p> 
             <p className="card-text py-5 w-50 text-justify">
               {currentPost.post.description}
             </p>

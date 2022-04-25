@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import { FirebaseContext } from "../../store/Context";
-import { signUpEmailPwd, signInEmailPwd } from "../../firebase/config";
+//import { signUpEmailPwd, signInEmailPwd } from "../../firebase/config";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,16 +7,10 @@ import { toast } from "react-toastify";
 import fire from "../../firebase/config";
 
 import "./Login.css";
-//import { Formik, Form , Field} from "formik";
-//mport * as Yup from 'yup';
-
-//import { Button, Label, Divider } from "semantic-ui-react";
-
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //const { firebase } = useContext(FirebaseContext);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const history = useNavigate();
   const dispatch = useDispatch();
@@ -27,20 +20,6 @@ const Login = () => {
   }); 
 
 
-  // const handleLogin = (e) => {
-    
-  //   e.preventDefault(); 
-  //   firebase.auth().signInWithEmailAndPassword(email, password)
-  //     .then(() => {
-  //       alert('Logged In')
-  //       history('/');
-  //     })
-  //     .catch((error) => {
-  //       alert(error.message);
-  //     });
-  //   }
-
-  // login user
   const loginUser = (email, password) => {
     fire
       .auth()

@@ -2,7 +2,7 @@ import { SET_POSTS, SET_POSTS_LOADING,
     RESET_POSTS,
     ADD_POST,
     DELETE_POST,
-    UPDATE_POST, } from "../actions/postActions";
+    UPDATE_POST,FILTER_POSTS } from "../actions/postActions";
 
     const initialState = {
         postsLoading: true,
@@ -29,41 +29,7 @@ import { SET_POSTS, SET_POSTS_LOADING,
           case RESET_POSTS:
             state = initialState;
             return state;
-        //   case ADD_COMMENT:
-        //     state = {
-        //       ...state,
-        //       posts: state.posts.map((pst) =>
-        //         pst.postId === action.payload.id
-        //           ? pst.post.comments.push(action.payload.comment) && pst
-        //           : pst
-        //       ),
-        //     };
-        //     return state;
-        //   case ADD_REPLY:
-        //     const currentPost = state.posts.find(
-        //       (pst) => pst.postId === action.payload.postId
-        //     );
-        //     currentPost.post.comments = action.payload.updatedComments;
-      
-        //     state = {
-        //       ...state,
-        //       posts: state.posts.map((pst) =>
-        //         pst.postId === action.payload.postId ? currentPost : pst
-        //       ),
-        //     };
-        //     return state;
-        //   case DELETE_COMMENT:
-        //     const Post = state.posts.find(
-        //       (pst) => pst.postId === action.payload.postId
-        //     );
-        //     Post.post.comments = action.payload.filteredComments;
-        //     state = {
-        //       ...state,
-        //       posts: state.posts.map((pst) =>
-        //         pst.postId === action.payload.postId ? Post : pst
-        //       ),
-        //     };
-        //     return state;
+        
           case UPDATE_POST:
             const current = state.posts.find(
               (pst) => pst.postId === action.payload.postId

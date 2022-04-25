@@ -27,6 +27,23 @@ const setPostsLoading = (message) => ({
     dispatch (setPostsLoading(false));
     dispatch (setPosts(allPosts));
   };
+
+  // export const filterPosts = (posts,category) => async (dispatch) => {
+  //   dispatch(setPostsLoading(true));
+  
+  //   const posts = await fire.firestore().collection("posts").get();
+  
+  //   const allPosts = [];
+  
+  //   posts.forEach((post) => {
+  //     if (post.id !== "27g9Q1JzQmEZbQ8AxaBg") {
+  //       allPosts.push({ post: post.data(), postId: post.id });
+  //     }
+  //   });
+  
+  //   dispatch (setPostsLoading(false));
+  //   dispatch (setPosts(allPosts));
+  // };
   
   const addPost = (post) => ({
     type: "ADD_POST",
@@ -46,8 +63,6 @@ const setPostsLoading = (message) => ({
           updatedAt: Date.now(),
           image: null,
           author,
-          //likes: 0,
-          //comments: [],
           postedBy: nameAuthor,
         })
         .then((doc) => {
@@ -108,12 +123,28 @@ const setPostsLoading = (message) => ({
           });
       });
   };
+
+  // const filteredPosts = (data) => ({
+  //     type: "FILTERED_POST",
+  //     payload: data,
+  // });
+  // export const filteredPost = (data, category ) = (dispatch) => {
+  //   dispatch(setPostsLoading(true));
   
+  //   const posts = await fire.firestore().collection("posts").get();
+     
+  //   const allBlogs = [];
+  //   allBlogs.filter((post) =>{const filteredPost = post.category.toLowerCase().includes(searchKey.toLowerCase()) }
+  //   );
+  //   dispatch (setBlogs(filteredPosts));
+  // }
+  
+ 
   const updatePost = (data) => ({
     type: "UPDATE_POST",
     payload: data,
   });
-  
+
   export const postUpdate = (postId, data) => (dispatch) => {
     fire
       .firestore()
@@ -123,7 +154,7 @@ const setPostsLoading = (message) => ({
         title: data.title,
         category: data.category,
         description: data.description,
-        image:null,
+        image:data.image,
       })
       // .then((doc) => {
       //   const fileUpload = fire
@@ -152,7 +183,7 @@ const setPostsLoading = (message) => ({
       //           })
       
       .then(() => {
-        dispatch(updatePost({ postId, data }));
+        dispatch(updatePost({ postId,data }));
       });
       // .then((doc) => {
       //   const fileUpload = fire

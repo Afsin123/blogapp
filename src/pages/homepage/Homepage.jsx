@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector, shallowEqual} from 'react-redux';
 import { useNavigate , Link} from 'react-router-dom';
 import Header from '../../components/header/Header'; 
+//import SearchBar from '../../components/searchbar/SearchBar';
+import Sidebar from '../../components/sidebar/Sidebar';
 import Posts from '../../dashboard/Posts';
 import SeePost from '../../dashboard/SeePost';
 import fire from '../../firebase/config';
+
 import { getPosts } from '../../redux/actionCreators/postsActionCreators';
 
 const Homepage = () => { 
   const history = useNavigate();
   const dispatch = useDispatch();  
+  const [searchKey, setSearchKey]= useState('');
+  
+ 
   const { posts, postsLoading, isLoggedIn, userId } = useSelector(
     (state) => ({
       posts: state.posts.posts,
@@ -33,6 +39,8 @@ const Homepage = () => {
     })
     .slice(0, 5);
 
+    const [blogs, setBlogs] = useState('posts');
+
   useEffect(() => {
       if (postsLoading) {
         dispatch(getPosts());
@@ -50,13 +58,62 @@ const Homepage = () => {
       }
     });
   }, [dispatch]);
+
+   // Search submit
+   const handleSearchBar = (e) => {
+    e.preventDefault();
+    handleSearchResults();
+  }; 
   
+  // Search for blog by category
+  const handleSearchResults = () => {
+    const allBlogs = posts;
+    const filteredPosts = allBlogs.filter((post) =>
+      post.category.toLowerCase().includes(searchKey.toLowerCase())
+    );
+    setBlogs(filteredPosts);
+  };
+  // useEffect(() => {
+  //   if(searchKey) {
+  //     dispatch(filteredPosts);
+  //   }
+  // }, [ dispatch])
+  
+  
+   // Clear search and show all blogs
+   const handleClearSearch = () => {
+    setBlogs(posts);
+    setSearchKey('');
+  };
+
   return (
 
     <div> 
         <Header/> 
+       
+    
+        <div className='searchBar-wrap'>
+    {/* <form onSubmit={handleSearchBar}>
+      <input
+        type='text'
+        placeholder='Search By Category'
+        value= {searchKey}
+        onChange={(e)=> setSearchKey(e.target.value)}
+      />
+      {searchKey && <span onClick={handleClearSearch}>X</span>}
+      <button>Go</button>
+    </form> */}
+  </div>
+    {/* <SearchBar
+        value={searchKey}
+        clearSearch={handleClearSearch}
+        formSubmit={handleSearchBar}
+        handleSearchKey={(e) => setSearchKey(e.target.value)}
+      /> */}
+        
         <div className="container">
-      <div className="row">
+          <div className='home'> 
+         <div className="row">
         <div className="col-md-8 py-5">
           <div className="latestPostsHeading border-bottom border-primary d-flex">
             <p className="bg-dark text-white col-md-3 d-flex align-items-center justify-content-center py-2 h5">
@@ -137,7 +194,8 @@ const Homepage = () => {
         </div>
       </div>
     </div>
-        
+    
+    </div>
     </div>
   )
 }
