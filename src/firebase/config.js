@@ -6,7 +6,7 @@ import "firebase/storage";
 import "firebase/firestore";
 
 
-//import { initializeApp } from "firebase/app";
+// import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC2HmP2V9Rh6I4es5BRY6mxAO1w7k-BVbk",
@@ -16,6 +16,16 @@ const firebaseConfig = {
     messagingSenderId: "192711749933",
     appId: "1:192711749933:web:6ccbc0037916620a8e23a4"
   };
+
+// Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD85JDx33JKjVml3H6rc8q3P9V1ymqyRDE",
+//   authDomain: "blog-test-app-7fab2.firebaseapp.com",
+//   projectId: "blog-test-app-7fab2",
+//   storageBucket: "blog-test-app-7fab2.appspot.com",
+//   messagingSenderId: "495379645328",
+//   appId: "1:495379645328:web:d0fcfecfd4e0fce2c32915"
+// };
 
   // Initialize Firebase
  

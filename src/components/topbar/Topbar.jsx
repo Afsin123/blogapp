@@ -2,6 +2,7 @@ import React,{useContext} from "react";
 import fire from "../../firebase/config";
 //import { AuthContext } from "../../store/Context";
 import { Link, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 //import { FirebaseContext } from "../../store/Context";
 import { useSelector , useDispatch} from "react-redux";
 import { toast } from "react-toastify";
@@ -29,34 +30,20 @@ export default function Topbar() {
   return (
     <div className="top">
       <div className="topLeft">
-        {/* <i className="topIcon fab fa-facebook-square"></i>
-        <i className="topIcon fab fa-instagram-square"></i>
-        <i className="topIcon fab fa-pinterest-square"></i>
-        <i className="topIcon fab fa-twitter-square"></i> */}
+       
       </div>
       <div className="topCenter">
         <ul className="topList">
-          <li className="topListItem">
-            <Link className="link" to="/">
-              HOME
-            </Link>
-          </li> 
           
-          {user && <li className= "topListItem" onClick = {()=> {
-            history("/dashboard")
-          }}> DASHBOARD </li> }
-          {/* <li className="topListItem">CONTACT</li> */}
-          {user && <li className= "topListItem" onClick = {()=> {
-            history("/write")
-          }}> ADD POST </li> }
-          {/* <li className="topListItem">
-            <Link className="link" to="/write">
-              WRITE
-            </Link>
-          </li> */}
-          {user && <li className="topListItem" onClick={()=> {
+          <NavLink className = "topListItem"exact to="/">HOME</NavLink>
+         
+           {user && <NavLink className="topListItem" to="/dashboard">DASHBOARD</NavLink> }
+       
+           {user && <NavLink className= "topListItem" to = "/write"> ADD POST </NavLink> }
+
+           {user && <li className="topListItem" onClick={()=> {
             logoutUser();
-           // history("/Login") 
+          
           }}>LOGOUT</li>}
           
         </ul>
